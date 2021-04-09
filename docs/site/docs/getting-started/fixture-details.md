@@ -18,11 +18,11 @@ All the parameters the <xref:Bunit.Fixture> component supports are shown in the 
 
 **Setup and Test Methods:**
 
-Let us start by looking at the parameters that take a method or lambda as input. The methods are called in the order they are listed below, and should be used for the described purpose:
+Let us start by looking at the parameters that take a method or lambdaas input first [__AP: do you mean that we'll first look at \<blah\> or that we'll look first at parameters that take a method as input?__]. The methods are called in the order they are listed below, and should be used for the described purpose:
 
 1. **<xref:Bunit.RazorTesting.FixtureBase`1.Setup>** and **<xref:Bunit.RazorTesting.FixtureBase`1.SetupAsync>:**  
 The `Setup` and `SetupAsync` methods are called first, and you can provide both if needed. If both are provided, `Setup` is called first.   
-These are usually used to configure the <xref:Bunit.TestContextBase.Services> collection of the <xref:Bunit.Fixture> component before the component under test or any fragments are rendered.
+These are usually used to configure the <xref:Bunit.ITestContextBase.Services> collection of the <xref:Bunit.Fixture> component before the component under test or any fragments are rendered.
 2. **<xref:Bunit.RazorTesting.FixtureBase`1.Test>** or **<xref:Bunit.RazorTesting.FixtureBase`1.TestAsync>:**  
  The `Test` or `TestAsync` method is called after the setup methods.   
   _One, and only one_ of the test methods can be specified per fixture. Use the test method to access the component under test and any fragments defined in the fixture, and interact and assert against them.
@@ -31,6 +31,7 @@ In the example above, the setup and test methods are declared in a `@code { }` b
 
 You can place the methods anywhere you want inside the test component, which can be useful. For example, if you have the same setup steps for multiple tests, you can avoid code duplication by placing them in a common setup method that can be shared by the tests in the same test component.
 
+TODO EGIL [__AP: <== !!__]
 
 **Other parameters**
 
@@ -76,7 +77,7 @@ The <xref:Bunit.Fixture>'s setup and test methods receive the <xref:Bunit.Fixtur
 
 For both `GetFragment` methods, the `id` string parameter is optional. If it is not provided, the first <xref:Bunit.Fragment> is used to return a <xref:Bunit.IRenderedFragment> or <xref:Bunit.IRenderedComponent`1>. Otherwise, the <xref:Bunit.Fragment> with an `Id` parameter that matches the `id` specified in the `GetFragment` method call will be used.
 
-The generic versions of <xref:Bunit.Fixture.GetComponentUnderTest``1> and <xref:Bunit.Fixture.GetFragment``1(System.String)> can specify a component of type `TComponent` which is not the first child of <xref:Bunit.ComponentUnderTest> or <xref:Bunit.Fragment>. This is useful in situations such as the component under test being wrapped inside a `<CascadingValue>`. The `GetComponentUnderTest` and `GetFragment` methods will return the _first_ component they find that matches the requested type through a depth-first search of the render tree.
+The generic versions of <xref:Bunit.Fixture.GetComponentUnderTest``1> and <xref:Bunit.Fixture.GetFragment``1(System.String)> can specify a component of type `TComponent` which is not the first child of <xref:Bunit.ComponentUnderTest> or <xref:Bunit.Fragment>. This is useful in situations such as the component under test being wrapped inside a `<CascadingValue>`. The `GetComponentUnderTest` and `GetFragment`methods [__AP: method or methods?__] will return the _first_ component theyit [__AP: it or they?__] finds that matches the requested type through a depth-first search of the render tree.
 
 > [!NOTE]
 > You can call the `GetComponentUnderTest` or `GetFragment` methods multiple times on the same `Fixture` instance. Each call will return the same instance for the same input. However, you cannot mix the generic and non-generic versions.
@@ -101,10 +102,13 @@ Let's look at what's going on in this test:
 
 1. The fixture has both a setup and test method specified. The setup method is used to register an empty list of tasks that the `<SimpleTodo>` component requires.
 2. The `<SimpleTodo>` component is wrapped in a `<CascadingValue>` component which passes down the "Theme" cascading value.
-3. The first `<Fragment>` does not have an `Id` parameter. It is not needed since the `GetFragment(string? id = null)` method will pick the first `<Fragment>` if no `id` argument is passed to it.
-4. The second `<Fragment Id="expected tasks">` does have an `Id` parameter, to make it possible to get the second fragment through a call to the `GetFragment("expected tasks")` method.
+3. The first `<Fragment>` does not have an `Id` parameter. It is not neededid`, since the `GetFragment(string? id = null)` method will pick the first `<Ffragment>` if no `id` argument is passed to itis provided.
+4. The second `<Fragment Id="expected tasks">` does have an `Id` parameter, to make it possible to get the second fragment through a call to the `GetFragment("expected tasks")` method. [__AP: Id or id?__]
 5. The test uses the generic version of `GetComponentUnderTest<SimpleTodo>()`, which gives us access to the instance of `SimpleTodo` and allows us to inspect its properties, e.g. `ThemeClass`.
 
 This covers the “arrange”-steps in the test above and shows how you can easily access both the component under test and other fragments that you might need to write your test concisely. We will cover the details of the "act" and "assertion" steps in the <xref:interaction> and <xref:verification> pages. 
 
 Learn more about injecting services into components under test on the <xref:inject-services> page. 
+<!--stackedit_data:
+eyJoaXN0b3J5IjpbLTUyMjM0MTczN119
+-->
