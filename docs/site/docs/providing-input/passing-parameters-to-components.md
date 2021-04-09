@@ -448,7 +448,7 @@ It is possible to nest a component under tests inside other components, if that 
 
 [!code-csharp[](../../../samples/tests/xunit/NestedComponentTest.cs#L16-L28)]
 
-These examples do the same thing, i.e. render the `<HelloWorld>` component inside the `<Wrapper>` component. What is special in both cases is the use of the `FindComponent<HelloWorld>()` that returns a `IRenderedComponent<HelloWorld>`. This is needed because the `RenderComponent<Wrapper>` method call returns an `IRenderedComponent<Wrapper>` instance, that provides access to the instance of the `<Wrapper>` component, but not the `<HelloWorld>`-component instance.
+These examples do the same thing, i.e. render the `<HelloWorld>` component inside the `<Wrapper>` component. What is special in both cases is the use of the `FindComponent<HelloWorld>()` that returns a `IRenderedComponent<HelloWorld>`. This is needed because, which gives access to only the `<HelloWorld>` components part of the `RrenderComponent<Wrapper>` method call returns an `IRenderedComponent<Wrapper>` instance, that provides access to the tree, and the `<HelloWorld>` components instance.[__AP: The last clause is rather ambiguous. Is it the ender instance o th the <HelloWorldcomponent instance
 
 # [Razor test code](#tab/razor)
 
@@ -463,3 +463,6 @@ The special thing in this case is that the `GetComponentUnderTest<HelloWorld>()`
 ## Further Reading
 
 - <xref:inject-services>
+<!--stackedit_data:
+eyJoaXN0b3J5IjpbLTE4NDYzOTAxNjddfQ==
+-->
