@@ -82,6 +82,9 @@ Shout outs and a big thank you [to all the contributors](https://github.com/egil
 **Want to help out? You can help in a number of ways:**
 
 - Provide feedback and input through [issues](https://github.com/egil/bunit/issues), via [Twitter](https://twitter.com/egilhansen) or by using the [bUnit Gitter chat room](https://gitter.im/egil/bunit).
-- Help build the library. Just pick an issue and submit pull-requests.
+- Help build the library ust pick an issue and submit pull-requests.
 - Help write documentation.
-- Create blog posts, presentations or video tutorials. If you do, I'll be happy to showcase them in the [related section](xref:external-resources) on this site.
+- Create blog posts, presentations or video tutorials. If you do, Ill be happy to showcase them in the [related section](xref:external-resources) on this site.
+<!--stackedit_data:
+eyJoaXN0b3J5IjpbLTYxOTk4MDg1MV19
+-->
